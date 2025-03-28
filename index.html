@@ -3,77 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Before & After Slider</title>
-    <style>
-        .comparison-slider {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .image-container {
-            position: relative;
-            width: 100%;
-        }
-
-        .before-image, .after-image {
-            position: absolute;
-            width: 100%;
-            height: auto;
-            top: 0;
-            left: 0;
-            transition: 0.3s ease;
-        }
-
-        .after-image {
-            clip-path: inset(0 50% 0 0);
-        }
-
-        .slider {
-            position: absolute;
-            width: 100%;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            -webkit-appearance: none;
-            appearance: none;
-            background: rgba(255, 255, 255, 0.7);
-            height: 5px;
-            border-radius: 5px;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #fff;
-            border: 2px solid #000;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-    </style>
+    <title>Test Page</title>
 </head>
 <body>
-    <div class="comparison-slider">
-        <div class="image-container">
-            <img src="KVP-preset- icy serenity-2528.jpg" alt="Before Image" class="before-image">
-            <img src="KVP-preset- icy serenity-2528-2.jpg" alt="After Image" class="after-image">
-        </div>
-        <input type="range" min="0" max="100" value="50" class="slider">
-    </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const slider = document.querySelector(".slider");
-            const afterImage = document.querySelector(".after-image");
-
-            slider.addEventListener("input", function () {
-                afterImage.style.clipPath = `inset(0 ${100 - this.value}% 0 0)`;
-            });
-        });
-    </script>
+    <h1>Hello! If you see this, your GitHub Pages is working.</h1>
 </body>
 </html>
