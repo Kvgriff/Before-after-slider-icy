@@ -8,10 +8,12 @@
         .container {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 100%;
+            height: auto;
         }
         .container img {
             width: 100%;
+            height: auto;
             display: block;
         }
         .overlay {
@@ -21,6 +23,7 @@
             width: 50%;
             height: 100%;
             overflow: hidden;
+            cursor: ew-resize;
         }
         .overlay img {
             position: absolute;
@@ -30,13 +33,38 @@
 </head>
 <body>
 
-    <h1>Before & After Slider</h1>
+    <h1 style="display:none;">Before & After Slider</h1>
+
     <div class="container">
-        <img src="https://github.com/Kvgriff/Before-after-slider-icy/blob/a201e57d937e4d235e6adeac77007b4a3066c7bd/KVP-preset-%20icy%20serenity-2528.jpg" alt="Before">
+        <img src="https://github.com/Kvgriff/Before-after-slider-icy/blob/d05162b405e3372ed676cfdb3b40b2118554f158/KVP-preset-%20icy%20serenity-2528.jpg" alt="Before">
         <div class="overlay">
-            <img src="https://github.com/Kvgriff/Before-after-slider-icy/blob/c8640911baf5b71593f2077942eb09cc6610f843/KVP-preset-%20icy%20serenity-2528-2.jpg" alt="After">
+            <img src="https://github.com/Kvgriff/Before-after-slider-icy/blob/d05162b405e3372ed676cfdb3b40b2118554f158/KVP-preset-%20icy%20serenity-2528-2.jpg" alt="After">
         </div>
     </div>
+
+    <script>
+        const slider = document.querySelector('.overlay');
+        let isMouseDown = false;
+        let startX;
+        
+        slider.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            document.body.style.cursor = 'ew-resize';
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isMouseDown = false;
+            document.body.style.cursor = 'default';
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+            const x = e.pageX - startX;
+            const width = Math.min(Math.max(x, 0), slider.parentElement.offsetWidth);
+            slider.style.width = width + 'px';
+        });
+    </script>
 
 </body>
 </html>
