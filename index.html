@@ -13,10 +13,9 @@
         }
         .container img {
             width: 100%;
-            height: auto;
             display: block;
         }
-        .overlay {
+        .slider {
             position: absolute;
             top: 0;
             left: 50%;
@@ -25,7 +24,7 @@
             overflow: hidden;
             cursor: ew-resize;
         }
-        .overlay img {
+        .slider img {
             position: absolute;
             left: -50%;
         }
@@ -33,36 +32,40 @@
 </head>
 <body>
 
-    <h1 style="display:none;">Before & After Slider</h1>
-
     <div class="container">
+        <!-- Before image -->
         <img src="https://github.com/Kvgriff/Before-after-slider-icy/blob/d05162b405e3372ed676cfdb3b40b2118554f158/KVP-preset-%20icy%20serenity-2528.jpg" alt="Before">
-        <div class="overlay">
+
+        <!-- Slider for after image -->
+        <div class="slider">
             <img src="https://github.com/Kvgriff/Before-after-slider-icy/blob/d05162b405e3372ed676cfdb3b40b2118554f158/KVP-preset-%20icy%20serenity-2528-2.jpg" alt="After">
         </div>
     </div>
 
     <script>
-        const slider = document.querySelector('.overlay');
+        const slider = document.querySelector('.slider');
         let isMouseDown = false;
         let startX;
-        
+
+        // When mouse button is pressed
         slider.addEventListener('mousedown', (e) => {
             isMouseDown = true;
             startX = e.pageX - slider.offsetLeft;
             document.body.style.cursor = 'ew-resize';
         });
-        
+
+        // When mouse button is released
         document.addEventListener('mouseup', () => {
             isMouseDown = false;
             document.body.style.cursor = 'default';
         });
-        
+
+        // When mouse moves
         document.addEventListener('mousemove', (e) => {
             if (!isMouseDown) return;
-            const x = e.pageX - startX;
-            const width = Math.min(Math.max(x, 0), slider.parentElement.offsetWidth);
-            slider.style.width = width + 'px';
+            let x = e.pageX - startX;
+            x = Math.min(Math.max(x, 0), slider.parentElement.offsetWidth);
+            slider.style.width = x + 'px';
         });
     </script>
 
